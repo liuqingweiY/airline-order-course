@@ -50,7 +50,7 @@ public class OrderServiceImplTest {
         testOrder.setOrderNumber("ORD12345");
         testOrder.setStatus(OrderStatus.PAID);
         testOrder.setAmount(new BigDecimal("250.75"));
-        testOrder.setCreateDate(LocalDateTime.now());
+        testOrder.setCreationDate(LocalDateTime.now());
         testOrder.setUser(testUser);
 
         testOrderPay = new Order();
@@ -58,7 +58,7 @@ public class OrderServiceImplTest {
         testOrderPay.setOrderNumber("ORD00002");
         testOrderPay.setStatus(OrderStatus.PENDING_PAYMENT);
         testOrderPay.setAmount(new BigDecimal("300.75"));
-        testOrderPay.setCreateDate(LocalDateTime.now());
+        testOrderPay.setCreationDate(LocalDateTime.now());
         testOrderPay.setUser(testUser);
 
         testOrderCancel = new Order();
@@ -66,7 +66,7 @@ public class OrderServiceImplTest {
         testOrderCancel.setOrderNumber("ORD00003");
         testOrderCancel.setStatus(OrderStatus.PAID);
         testOrderCancel.setAmount(new BigDecimal("320.75"));
-        testOrderCancel.setCreateDate(LocalDateTime.now());
+        testOrderCancel.setCreationDate(LocalDateTime.now());
         testOrderCancel.setUser(testUser);
 
         testOrderCancelled = new Order();
@@ -74,7 +74,7 @@ public class OrderServiceImplTest {
         testOrderCancelled.setOrderNumber("ORD00004");
         testOrderCancelled.setStatus(OrderStatus.CANCELLED);
         testOrderCancelled.setAmount(new BigDecimal("330.75"));
-        testOrderCancelled.setCreateDate(LocalDateTime.now());
+        testOrderCancelled.setCreationDate(LocalDateTime.now());
         testOrderCancelled.setUser(testUser);
     }
 

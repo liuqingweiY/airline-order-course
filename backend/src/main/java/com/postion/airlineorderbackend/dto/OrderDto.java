@@ -9,7 +9,7 @@ import java.util.Map;
 
 @Data
 public class OrderDto {
-    private long id;
+    private Long id;
     private String orderNumber;
     private OrderStatus status;
     private BigDecimal amount;
@@ -19,7 +19,7 @@ public class OrderDto {
 
     @Data
     public static class UserDto {
-        private long id;
+        private Long id;
         private String userName;
     }
 }

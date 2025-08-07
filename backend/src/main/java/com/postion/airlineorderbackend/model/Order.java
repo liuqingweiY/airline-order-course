@@ -21,7 +21,7 @@ public class Order {
     private OrderStatus status;
     private BigDecimal amount;
     @Column(name="creation_date")
-    private LocalDateTime createDate;
+    private LocalDateTime creationDate;
 
     @ManyToOne
     @JoinColumn(name = "user_id")

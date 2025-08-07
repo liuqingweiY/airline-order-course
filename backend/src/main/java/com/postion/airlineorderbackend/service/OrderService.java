@@ -9,5 +9,5 @@ public interface OrderService {
     OrderDto getOrderById(Long id);
     OrderDto payOrder(Long id);
     OrderDto cancelOrder(Long id);
-//    void requestTicketIssuance(Long id);
+    void requestTicketIssuance(Long id);
 }
