@@ -1,0 +1,21 @@
+<div class="login-container">
+  <form nz-form [formGroup]="loginForm" class="login-form" (ngSubmit)="submitForm()">
+    <h2 class="login-title">航空订单系统登陆</h2>
+    <nz-form-item>
+      <nz-form-control nzErrorTip="请输入用户名!">
+        <nz-input-group nzprefixIcon="user">
+          <input type="text" nz-input formControlName="userName" placeholder="用户名(admin)">
+        </nz-input-group>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-control nzErrorTip="请输入密码!">
+        <nz-input-group nzprefixIcon="lock">
+          <input type="password" nz-input formControlName="password" placeholder="密码(password)">
+        </nz-input-group>
+      </nz-form-control>
+    </nz-form-item>
+    <button nz-button nzType="primary" nz-loading="loading" class="login-form-button">登陆</button>
+  </form>
+</div>
+

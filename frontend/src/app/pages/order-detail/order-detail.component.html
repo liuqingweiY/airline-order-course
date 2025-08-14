@@ -1,0 +1,45 @@
+<div class="page-container" *ngIf="order$ | async as order">
+  <nz-page-header nzBackIcon [nzGhost]="false" nzTitle="订单详情" [nzSubtitle]="order.orderNumber" class="site-page-header">
+    <nz-page-header-extra>
+      <a routerLink="/orders">返回订单列表</a>
+    </nz-page-header-extra>
+  </nz-page-header>
+  <ng-container *ngIf="order$ | async as order">
+    
+    <div class="actions" style="margin-bottom: 16px;">
+      <button *ngIf="order.status === 'PENDING_PAYMENT'" nz-button nzType="primary" (click)="onPay(order.id)" [nzLoading]="isLoading">
+        <span nz-icon nzType="dollar"></span>
+        立即支付
+      </button>
+      <button *ngIf="order.status === 'TICKETING_FAILED'" nz-button nzType="default" (click)="onReTry(order.id)" [nzLoading]="isLoading">
+        <span nz-icon nzType="redo"></span>
+        重新出票
+      </button>
+      <button *ngIf="order.status === 'PENDING_PAYMENT' || order.status === 'PAID' || order.status === 'TICKETING_FAILED'" 
+        nz-button nzType="dashed" nzDanger (click)="onCancel(order.id)" [nzLoading]="isLoading">
+        <span nz-icon nzType="close-circle"></span>
+        取消订单
+      </button>
+    </div>
+    <nz-descriptions nzTitle="订单信息" nzBordered>
+      <nz-descriptions-item nzTitle="Status">
+        <nz-tag [nzColor]="getStatusColor(order.status)">{{ order.status }}</nz-tag>
+        <nz-descriptions-item nzTitle="订单ID">{{ order.id }}</nz-descriptions-item>
+        <nz-descriptions-item nzTitle="订单号">{{ order.orderNumber }}</nz-descriptions-item>
+          <!-- <nz-spin *nzIf="order.status === 'TICKETING_IN_PROGRESS'" nzSample [nzSize]="'small'"></nz-spin> -->
+      </nz-descriptions-item>
+      <nz-descriptions-item nzTitle="订单号">{{ order.orderNumber }}</nz-descriptions-item>
+      <nz-descriptions-item nzTitle="订单金额">{{ order.amount | currency:'CNY' }}</nz-descriptions-item>
+      <nz-descriptions-item nzTitle="创建日期">{{ order.creationDate | date:'full' }}</nz-descriptions-item>
+      <nz-descriptions-item nzTitle="下单用户">{{ order.user.userName }}(ID: {{ order.user.id }})</nz-descriptions-item>
+      <nz-descriptions-item nzTitle="模拟航班信息" nzSpan="2" >
+        <pre>{{ order.flightInfo | json }}</pre>
+      </nz-descriptions-item>
+    </nz-descriptions>
+
+  </ng-container>
+</div>
+
+<ng-template #loading>
+  <div class="page-container">加载中...</div>
+</ng-template>
