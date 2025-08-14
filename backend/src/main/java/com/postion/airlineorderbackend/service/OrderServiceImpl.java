@@ -108,8 +108,17 @@ public class OrderServiceImpl implements OrderService {
         if (order == null) {
             return null;
         }
-        OrderDto.UserDto userDto = orderMapper.userToUserDto(order.getUser());
-        OrderDto orderDto = orderMapper.orderToOrderDto(order);
+        //OrderDto.UserDto userDto = orderMapper.userToUserDto(order.getUser());
+        //OrderDto orderDto = orderMapper.orderToOrderDto(order);
+        OrderDto orderDto = new OrderDto();
+        orderDto.setId(order.getId());
+        orderDto.setOrderNumber(order.getOrderNumber());
+        orderDto.setAmount(order.getAmount());
+        orderDto.setStatus(order.getStatus());
+        orderDto.setCreationDate(order.getCreationDate());
+        OrderDto.UserDto userDto = new OrderDto.UserDto();
+        userDto.setId(order.getUser().getId());
+        userDto.setUserName(order.getUser().getUsername());
         Map<String, Object> map  = new HashMap<>();
         map.put("flightNumber", "MU5180");
         orderDto.setFlightInfo(map);
