@@ -19,7 +19,7 @@ services:
 
   app:
     # 核心：使用 CI/CD 构建的镜像
-    image: kroulzhang/airline-order-manage:latest
+    image: liuqw/airline-order-course:latest
     container_name: my-springboot-angular-app
     restart: always
     ports:
