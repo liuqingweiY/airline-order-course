@@ -1,0 +1,39 @@
+# version: 字段已过时，可以删除
+services:
+  database:
+    image: mysql:8.0
+    container_name: airline-mysql-db
+    restart: always
+    environment:
+      # 最佳实践：使用 .env 文件管理这些敏感信息
+      MYSQL_ROOT_PASSWORD:
+      MYSQL_DATABASE: airline_order_db
+      MYSQL_USER: root
+      MYSQL_PASSWORD:
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+    networks:
+      - app-network
+
+  app:
+    # 核心：使用 CI/CD 构建的镜像
+    image: kroulzhang/airline-order-manage:latest
+    container_name: my-springboot-angular-app
+    restart: always
+    ports:
+      - "8080:8080"
+    depends_on:
+      - database
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://database:3306/myappdb?useSSL=false&allowPublicKeyRetrieval=true
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=
+    networks:
+      - app-network
+
+volumes:
+  db_data:
+networks:
+  app-network:
