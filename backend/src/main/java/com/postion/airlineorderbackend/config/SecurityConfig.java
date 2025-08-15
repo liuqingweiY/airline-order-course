@@ -50,7 +50,7 @@ public class SecurityConfig {
                     .antMatchers("/api/auth/login", "/error/jwtFilter",
                         "/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html")
                     .permitAll()
-                    .antMatchers("/login", "/index.html", "/favicon.ico", "/**.css", "/**.js").permitAll()
+                    .antMatchers("/", "/index.html", "/favicon.ico", "/**.css", "/**.js").permitAll()
                     .anyRequest().authenticated()
             )
             .sessionManagement(session ->
