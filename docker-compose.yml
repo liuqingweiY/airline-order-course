@@ -6,10 +6,10 @@ services:
     restart: always
     environment:
       # 最佳实践：使用 .env 文件管理这些敏感信息
-      MYSQL_ROOT_PASSWORD:
+      MYSQL_ROOT_PASSWORD: password
       MYSQL_DATABASE: airline_order_db
-      MYSQL_USER: root
-      MYSQL_PASSWORD:
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: password
     ports:
       - "3306:3306"
     volumes:
@@ -29,7 +29,7 @@ services:
     environment:
       - SPRING_DATASOURCE_URL=jdbc:mysql://database:3306/myappdb?useSSL=false&allowPublicKeyRetrieval=true
       - SPRING_DATASOURCE_USERNAME=root
-      - SPRING_DATASOURCE_PASSWORD=
+      - SPRING_DATASOURCE_PASSWORD=password
     networks:
       - app-network
 
