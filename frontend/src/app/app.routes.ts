@@ -22,6 +22,6 @@ export const routes: Routes = [
     //canActivate: [authGuard]
   },
   
-  { path: '', redirectTo: '/login', pathMatch: 'full' },
-  { path: '**', redirectTo: '/login' },
+  { path: '', redirectTo: '/orders', pathMatch: 'full' },
+  { path: '**', redirectTo: '/orders' },
 ];
