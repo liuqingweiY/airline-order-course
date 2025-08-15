@@ -8,7 +8,7 @@ services:
       # 最佳实践：使用 .env 文件管理这些敏感信息
       MYSQL_ROOT_PASSWORD: password
       MYSQL_DATABASE: airline_order_db
-      MYSQL_USER: admin
+      MYSQL_USER: root
       MYSQL_PASSWORD: password
     ports:
       - "3306:3306"
@@ -27,7 +27,7 @@ services:
     depends_on:
       - database
     environment:
-      - SPRING_DATASOURCE_URL=jdbc:mysql://database:3306/myappdb?useSSL=false&allowPublicKeyRetrieval=true
+      - SPRING_DATASOURCE_URL=jdbc:mysql://localhost:3306/airline_order_db?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
       - SPRING_DATASOURCE_USERNAME=root
       - SPRING_DATASOURCE_PASSWORD=password
     networks:
