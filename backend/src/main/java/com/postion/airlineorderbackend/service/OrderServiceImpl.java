@@ -127,53 +127,53 @@ public class OrderServiceImpl implements OrderService {
     }
 
     //@Scheduled(cron = "0/5 * * * * ? ")
-    @Transactional
-    @SchedulerLock(
-        name = "cancelUnpaidOrdersTask",
-        lockAtMostFor = "30000",
-        lockAtLeastFor = "20000"
-    )
-    public void cancelUnpaidOrdersTask() {
-        log.info("[定时任务] 开始检查并取消支付超时订单..任务1执行..");
-        LocalDateTime fifteenMinutesAgo = LocalDateTime.now().minusMinutes(15);
-        List<Order> unpaidOrder = orderRepository.findByStatusAndCreationDateBefore(
-            OrderStatus.PENDING_PAYMENT,
-            fifteenMinutesAgo
-        );
+    // @Transactional
+    // @SchedulerLock(
+    //     name = "cancelUnpaidOrdersTask",
+    //     lockAtMostFor = "30000",
+    //     lockAtLeastFor = "20000"
+    // )
+    // public void cancelUnpaidOrdersTask() {
+    //     log.info("[定时任务] 开始检查并取消支付超时订单..任务1执行..");
+    //     LocalDateTime fifteenMinutesAgo = LocalDateTime.now().minusMinutes(15);
+    //     List<Order> unpaidOrder = orderRepository.findByStatusAndCreationDateBefore(
+    //         OrderStatus.PENDING_PAYMENT,
+    //         fifteenMinutesAgo
+    //     );
 
-        if (!unpaidOrder.isEmpty()) {
-            log.info("[定时任务]发现 {} 个超时订单，将他们的状态更新为 CANCELLED。", unpaidOrder.size());
-            for (Order order: unpaidOrder) {
-                order.setStatus(OrderStatus.CANCELLED);
-            }
-            orderRepository.saveAll(unpaidOrder);
-        } else {
-            log.info("[定时任务]未发现超时订单。");
-        }
-    }
+    //     if (!unpaidOrder.isEmpty()) {
+    //         log.info("[定时任务]发现 {} 个超时订单，将他们的状态更新为 CANCELLED。", unpaidOrder.size());
+    //         for (Order order: unpaidOrder) {
+    //             order.setStatus(OrderStatus.CANCELLED);
+    //         }
+    //         orderRepository.saveAll(unpaidOrder);
+    //     } else {
+    //         log.info("[定时任务]未发现超时订单。");
+    //     }
+    // }
 
     //@Scheduled(cron = "0/5 * * * * ? ")
-    @Transactional
-    @SchedulerLock(
-        name = "cancelUnpaidOrdersTask2"
-    )
-    public void cancelUnpaidOrdersTask2() {
-        log.info("[定时任务] 开始检查并取消支付超时订单..任务2执行..");
-        LocalDateTime fifteenMinutesAgo = LocalDateTime.now().minusMinutes(15);
-        List<Order> unpaidOrder = orderRepository.findByStatusAndCreationDateBefore(
-            OrderStatus.PENDING_PAYMENT,
-            fifteenMinutesAgo
-        );
+    // @Transactional
+    // @SchedulerLock(
+    //     name = "cancelUnpaidOrdersTask2"
+    // )
+    // public void cancelUnpaidOrdersTask2() {
+    //     log.info("[定时任务] 开始检查并取消支付超时订单..任务2执行..");
+    //     LocalDateTime fifteenMinutesAgo = LocalDateTime.now().minusMinutes(15);
+    //     List<Order> unpaidOrder = orderRepository.findByStatusAndCreationDateBefore(
+    //         OrderStatus.PENDING_PAYMENT,
+    //         fifteenMinutesAgo
+    //     );
 
-        if (!unpaidOrder.isEmpty()) {
-            log.info("[定时任务]发现 {} 个超时订单，将他们的状态更新为 CANCELLED。", unpaidOrder.size());
-            for (Order order: unpaidOrder) {
-                order.setStatus(OrderStatus.CANCELLED);
-            }
-            orderRepository.saveAll(unpaidOrder);
-        } else {
-            log.info("[定时任务]未发现超时订单。");
-        }
-    }
+    //     if (!unpaidOrder.isEmpty()) {
+    //         log.info("[定时任务]发现 {} 个超时订单，将他们的状态更新为 CANCELLED。", unpaidOrder.size());
+    //         for (Order order: unpaidOrder) {
+    //             order.setStatus(OrderStatus.CANCELLED);
+    //         }
+    //         orderRepository.saveAll(unpaidOrder);
+    //     } else {
+    //         log.info("[定时任务]未发现超时订单。");
+    //     }
+    // }
 
 }
