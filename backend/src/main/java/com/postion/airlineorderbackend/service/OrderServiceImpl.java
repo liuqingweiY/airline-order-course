@@ -126,7 +126,7 @@ public class OrderServiceImpl implements OrderService {
         return orderDto;
     }
 
-    @Scheduled(cron = "0/5 * * * * ? ")
+    //@Scheduled(cron = "0/5 * * * * ? ")
     @Transactional
     @SchedulerLock(
         name = "cancelUnpaidOrdersTask",
@@ -152,7 +152,7 @@ public class OrderServiceImpl implements OrderService {
         }
     }
 
-    @Scheduled(cron = "0/5 * * * * ? ")
+    //@Scheduled(cron = "0/5 * * * * ? ")
     @Transactional
     @SchedulerLock(
         name = "cancelUnpaidOrdersTask2"
